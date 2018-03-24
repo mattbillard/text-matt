@@ -4,6 +4,7 @@
   "description": "Basic text editor with no text formatting",
   "scripts": {
     "start": "http-server ./public",
+    "start:dev": "http-server ./public -o",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
