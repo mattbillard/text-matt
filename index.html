@@ -7,19 +7,54 @@
   <title>Text Matt</title>
 
   <style>
-    body {
-      padding: 10px;
+    button {
+      max-height: 50vh;
+      padding: 5px;
+      margin-bottom: 5px;
+      border-radius: 2px;
     }
-
     textarea {
       box-sizing: border-box;
       width: 100%;
-      height: 40vh;
+      height: 35vh;
+      margin-bottom: 5px;
       padding: 10px;
       font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <textarea id="text-matt" autofocus></textarea>
+  <textarea oninput="save()" autofocus></textarea>
+  <div>
+    <button type="button" onclick="copyText()">Copy All</button>
+    <button type="button" onclick="clearText()">Clear</button>
+  </div>
+  
+
+  <script>
+    var textArea = document.querySelector('textarea');
+
+    function clearText() {
+      textArea.value = '';
+      textArea.focus();
+      save();
+    }
+
+    function copyText() {
+      textArea.select();
+      textArea.setSelectionRange(0, 999999); // iOS
+      document.execCommand('Copy');
+      textArea.select();
+    }
+
+    function load() {
+      textArea.value = localStorage.textMatt;
+    }
+
+    function save() {
+      localStorage.textMatt = textArea.value;
+    }
+
+    load();
+  </script>
 </body>
